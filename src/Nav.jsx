@@ -35,16 +35,18 @@ useEffect(()=>{
   return () => window.removeEventListener('scroll', changebackground);
 },[])
 
-
+const change= (e)=>{
+  setsrc(e.target.value)
+}
 
   const click=()=>{
-    setsub(src);
-    setsrc("");
-    setcheck(true);
+    setsub(src)
+
+    console.log("sub is", sub)
   }
-  const change= (e)=>{
-    setsrc(e.target.value)
-  }
+
+  console.log("src is", src)
+console.log("sub is", sub)
 
   return (
     <div>
@@ -66,7 +68,7 @@ useEffect(()=>{
             <input type="text" className='input' placeholder='Search here' value={src} onChange={change} /> 
 
             <Link className='srcicon' to="/result2">
-            <AiOutlineSearch onClick={click} size={"30px"} className='srcicon' aria-disabled/>
+            <AiOutlineSearch onClick={click}  className='srcicon'/>
               </Link> 
             </div>
       </nav>

@@ -25,12 +25,41 @@ function Inspire() {
             setid(e.strCategory);
          
         }
-        const settings = {
+        var settings = {
           dots: false,
           infinite: true,
           speed: 500,
           slidesToShow: 5,
-          slidesToScroll: 1,
+          slidesToScroll: 3,
+          initialSlide: 5,
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: false
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                initialSlide: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                initialSlide: 5,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                
+              }
+            }
+          ]
         };
        
   return (
@@ -41,13 +70,13 @@ function Inspire() {
     {/* <h2 className='featured' >Choose</h2> */}
     <div className="container222"> 
     <Slider {...settings}>
-        {inspire.map((e)=>
+        {inspire.map((e,id)=>
         ( 
-                <div className="movie2" key={e.id} onClick={()=>click(e)} >
+                <div className="movie2" key={id}  >
                     <img src={e.strMealThumb} alt="" />
                     <div className="catpri12ce"> 
                     <Link className='linkins'  to={{pathname: '/result'}}>
-        <img src={e.strCategoryThumb} alt=""  />  
+        <img src={e.strCategoryThumb} alt="" onClick={()=>click(e)} />  
         <h3>{e.strCategory} </h3> 
        </Link>
      </div>

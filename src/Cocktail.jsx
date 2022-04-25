@@ -2,6 +2,9 @@ import React,{useEffect,useState, useContext} from 'react'
 import { BsShop } from 'react-icons/bs'
 import {Link} from 'react-router-dom'
 import { MainContext } from './Context'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 function Cocktail() {
     const {categ,setcateg,alcat,setalcat,shop,setshop} = useContext(MainContext)
@@ -27,21 +30,63 @@ function Cocktail() {
     setalcat(e.name);
     console.log("alcat", alcat)
  }
+
+
+ var settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 3,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
   return (
     <>
         <h2 className='featured'>Who doesn't like Drinks ?</h2>
-        <div className='cocktail'>
+         <div className="beercon"> 
+    <Slider {...settings}>
        {fakebeer.map((e,idx)=>( 
-       <div className="beercon" key={idx}onClick={()=>click(e)} > 
+       <div className="beercon" key={idx} > 
             <Link className='linkins'  to={{pathname: '/result1'}}>
-            <img src={e.img} alt=""  />  
+            <img src={e.img} alt="" onClick={()=>click(e)} />  
             <h3>{e.name} </h3> 
         </Link>
          
         </div>
         ))}
+           </Slider>
             
       </div>
+
+
+
 
       <div className="footer">
           <h3>Made with React Js</h3>
